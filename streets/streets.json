@@ -48,7 +48,7 @@
       "scheme": "xyz"
     }
   },
-  "sprite": "https://tileserver-gl.laragis.vn/files/sprites/mapbox-streets/sprite",
+  "sprite": "https://tileserver-gl.laragis.vn/files/sprites/mapbox-streets/sprite@2x",
   "glyphs": "https://maps.gtelots.dev/api/v1/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
@@ -603,7 +603,7 @@
       "metadata": {},
       "source": "mapbox",
       "source-layer": "building",
-      "minzoom": 16,
+      "minzoom": 17,
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "#ded7d3",
@@ -1765,7 +1765,7 @@
       "source-layer": "building",
       "minzoom": 17,
       "filter": ["!has", "hide_3d"],
-      "layout": {"visibility": "visible"},
+      "layout": {"visibility": "none"},
       "paint": {
         "fill-extrusion-base": ["get", "min_height"],
         "fill-extrusion-color": "#efefed",
@@ -1918,7 +1918,7 @@
       "type": "line",
       "source": "gtelmaps",
       "source-layer": "boundary",
-      "minzoom": 2,
+      "minzoom": 5,
       "filter": [
         "all",
         ["==", ["get", "admin_level"], 4],
@@ -1929,11 +1929,11 @@
         "line-dasharray": [
           "step",
           ["zoom"],
-          ["literal", [2, 0]],
-          7,
-          ["literal", [2, 2, 6, 2]]
+          ["literal", [4, 2]],
+          8,
+          ["literal", [1, 2, 6, 2]]
         ],
-        "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.3, 12, 1.5],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.3, 12, 2],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 2, 0, 3, 1],
         "line-color": "#7D89B0"
       }
@@ -2038,7 +2038,7 @@
           1,
           ["match", ["get", "class"], ["ocean"], 14, 10],
           3,
-          ["match", ["get", "class"], ["ocean"], 18, 14],
+          ["match", ["get", "class"], ["ocean"], 16, 12],
           9,
           ["match", ["get", "class"], ["ocean"], 22, 18],
           14,
@@ -2283,7 +2283,7 @@
         ["!in", "class", "path"]
       ],
       "layout": {
-        "icon-image": "road_{ref_length}",
+        "icon-image": "default-{ref_length}",
         "icon-rotation-alignment": "viewport",
         "icon-size": 1,
         "symbol-avoid-edges": true,
@@ -2297,7 +2297,7 @@
           ["literal", ["Poppins Bold", "Roboto Bold", "Noto Sans Bold"]],
           ["literal", ["Poppins Regular", "Roboto Regular"]]
         ],
-        "text-offset": [0, 0.05],
+        "text-offset": [0, 0.25],
         "text-padding": 2,
         "text-rotation-alignment": "viewport",
         "text-size": 10,
@@ -4261,7 +4261,7 @@
       "source": "gtelmaps",
       "source-layer": "place",
       "minzoom": 4,
-      "maxzoom": 16,
+      "maxzoom": 10,
       "filter": ["all", ["==", "class", "city"], ["!=", "capital", 2]],
       "layout": {
         "icon-allow-overlap": true,
@@ -4294,7 +4294,25 @@
         "icon-halo-color": "hsl(0, 0%, 29%)",
         "icon-halo-width": 1,
         "icon-opacity": 1,
-        "text-color": "hsl(0,0%,20%)",
+        "text-color": [
+          "case",
+          [
+            "in",
+            ["get", "name"],
+            [
+              "literal",
+              [
+                "Hải Phòng",
+                "Huế",
+                "Đà Nẵng",
+                "Thành phố Hồ Chí Minh",
+                "Cần Thơ"
+              ]
+            ]
+          ],
+          "#772917",
+          "hsl(0, 0%, 20%)"
+        ],
         "text-halo-blur": 0.5,
         "text-halo-color": "hsl(0,0%,100%)",
         "text-halo-width": 0.8
@@ -4306,9 +4324,14 @@
       "metadata": {},
       "source": "maptiler_planet",
       "source-layer": "place",
-      "minzoom": 4,
+      "minzoom": 3,
       "maxzoom": 16,
-      "filter": ["all", ["==", "class", "city"], ["==", "capital", 2]],
+      "filter": [
+        "all",
+        ["==", "class", "city"],
+        ["==", "capital", 2],
+        ["==", "name:en", "Hanoi"]
+      ],
       "layout": {
         "icon-allow-overlap": true,
         "icon-image": ["step", ["zoom"], "circle", 13, ""],
@@ -4334,8 +4357,10 @@
           "interpolate",
           ["linear", 1],
           ["zoom"],
+          3,
+          8,
           4,
-          14,
+          12,
           8,
           18,
           12,
@@ -4350,7 +4375,7 @@
         "icon-halo-color": "hsl(0, 0%, 29%)",
         "icon-halo-width": 1,
         "icon-opacity": 1,
-        "text-color": "hsl(0,0%,20%)",
+        "text-color": "#97180C",
         "text-halo-blur": 0.5,
         "text-halo-color": "hsl(0,0%,100%)",
         "text-halo-width": 0.8
@@ -4363,7 +4388,7 @@
       "source": "maptiler_planet",
       "source-layer": "place",
       "minzoom": 1,
-      "maxzoom": 12,
+      "maxzoom": 10,
       "filter": [
         "all",
         ["==", "class", "country"],
@@ -4387,7 +4412,7 @@
           1,
           10,
           4,
-          ["case", [">", ["get", "rank"], 2], 15, 17],
+          ["case", [">", ["get", "rank"], 2], 12, 14],
           8,
           ["case", [">", ["get", "rank"], 2], 19, 23]
         ],
