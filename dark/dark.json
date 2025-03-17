@@ -13,7 +13,7 @@
     "maptiler_planet": {
       "type": "vector",
       "tiles": [
-        "https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key=T4DfLbI0eAiaF40FAHJd"
+        "https://tileserver-gl.laragis.vn/data/planet/{z}/{x}/{y}.pbf"
       ],
       "minzoom": 0,
       "maxzoom": 15,
