@@ -12,20 +12,29 @@
   "sources": {
     "maptiler_planet": {
       "type": "vector",
-      "tiles": ["https://tileserver-gl.laragis.vn/data/planet/{z}/{x}/{y}.pbf"],
+      "tiles": [
+        "https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key=T4DfLbI0eAiaF40FAHJd"
+      ],
       "minzoom": 0,
       "maxzoom": 15,
+      "scheme": "xyz"
+    },
+    "gtelmaps": {
+      "type": "vector",
+      "tiles": ["https://tileserver-gl.laragis.vn/data/basic/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 16,
       "scheme": "xyz"
     }
   },
   "sprite": "https://api.maptiler.com/maps/dataviz-dark/sprite",
-  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=T4DfLbI0eAiaF40FAHJd",
+  "glyphs": "https://maps.gtelots.dev/api/v1/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "Background",
       "type": "background",
       "layout": {"visibility": "visible"},
-      "paint": {"background-color": "hsl(0, 0%, 16%)"}
+      "paint": {"background-color": "#323336"}
     },
     {
       "id": "Residential",
@@ -132,7 +141,7 @@
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-antialias": true,
-        "fill-color": "hsl(0,0%,0%)",
+        "fill-color": "#1A1A1E",
         "fill-opacity": 1
       }
     },
@@ -150,7 +159,7 @@
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-antialias": true,
-        "fill-color": "hsl(0,0%,8%)",
+        "fill-color": "#26272B",
         "fill-opacity": 1,
         "fill-translate": {
           "stops": [[0, [0, 2]], [6, [0, 3]], [12, [0, 2]], [14, [0, 0]]]
@@ -558,7 +567,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsl(0, 0%, 17%)",
+        "line-color": "#2e2e31",
         "line-opacity": 1,
         "line-width": [
           "interpolate",
@@ -677,7 +686,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsl(0, 0%, 20%)",
+        "line-color": "#393a3f",
         "line-width": [
           "interpolate",
           ["linear", 2],
@@ -929,7 +938,7 @@
     {
       "id": "Other border",
       "type": "line",
-      "source": "maptiler_planet",
+      "source": "gtelmaps",
       "source-layer": "boundary",
       "minzoom": 5,
       "maxzoom": 8,
@@ -1086,8 +1095,12 @@
       "layout": {
         "symbol-placement": "point",
         "text-allow-overlap": false,
-        "text-field": "{name:en}",
-        "text-font": ["Metropolis Semi Bold Italic", "Noto Sans Bold"],
+        "text-field": "{name:vi}",
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold Italic",
+          "Noto Sans Bold"
+        ],
         "text-ignore-placement": false,
         "text-letter-spacing": 0.1,
         "text-line-height": 1.2,
@@ -1122,8 +1135,12 @@
       "layout": {
         "symbol-placement": "point",
         "text-allow-overlap": false,
-        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Metropolis Semi Bold Italic", "Noto Sans Bold"],
+        "text-field": ["coalesce", ["get", "name:vi"], ["get", "name"]],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold Italic",
+          "Noto Sans Bold"
+        ],
         "text-ignore-placement": false,
         "text-letter-spacing": 0.1,
         "text-line-height": 1.2,
@@ -1156,8 +1173,12 @@
       "layout": {
         "symbol-placement": "line",
         "symbol-spacing": 350,
-        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Metropolis Semi Bold Italic", "Noto Sans Bold"],
+        "text-field": ["coalesce", ["get", "name:vi"], ["get", "name"]],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold Italic",
+          "Noto Sans Bold"
+        ],
         "text-line-height": 1.2,
         "text-pitch-alignment": "auto",
         "text-rotation-alignment": "auto",
@@ -1197,8 +1218,12 @@
         "symbol-spacing": {
           "stops": [[6, 200], [16, 250], [20, 250], [22, 600]]
         },
-        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": ["coalesce", ["get", "name:vi"], ["get", "name"]],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-justify": "center",
         "text-letter-spacing": [
           "interpolate",
@@ -1249,7 +1274,7 @@
       "paint": {
         "text-color": "hsl(0, 0%, 49%)",
         "text-halo-blur": 0,
-        "text-halo-color": "hsl(0,0%,0%)",
+        "text-halo-color": "#2e2e31",
         "text-halo-width": 1.5,
         "text-opacity": [
           "step",
@@ -1292,7 +1317,11 @@
         "symbol-sort-key": ["to-number", ["get", "rank"]],
         "text-anchor": "center",
         "text-field": "{name}",
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-keep-upright": true,
         "text-max-width": 10,
         "text-offset": [0.2, 0.2],
@@ -1333,7 +1362,7 @@
       "paint": {
         "text-color": "hsl(0, 0%, 49%)",
         "text-halo-blur": 0,
-        "text-halo-color": "hsl(0, 0%, 0%)",
+        "text-halo-color": "#2e2e31",
         "text-halo-width": 1.5,
         "text-opacity": [
           "step",
@@ -1363,7 +1392,11 @@
         "symbol-sort-key": ["to-number", ["get", "rank"]],
         "text-anchor": "center",
         "text-field": "{name}",
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-keep-upright": true,
         "text-max-width": 10,
         "text-offset": [0.2, 0.2],
@@ -1402,8 +1435,12 @@
       "layout": {
         "symbol-sort-key": ["to-number", ["get", "rank"]],
         "text-anchor": "center",
-        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": ["coalesce", ["get", "name:vi"], ["get", "name"]],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-keep-upright": true,
         "text-max-width": 10,
         "text-offset": [0.2, 0.2],
@@ -1439,8 +1476,12 @@
       "layout": {
         "symbol-sort-key": ["to-number", ["get", "rank"]],
         "text-allow-overlap": false,
-        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": ["coalesce", ["get", "name:vi"], ["get", "name"]],
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-max-width": 9,
         "text-size": [
           "interpolate",
@@ -1458,7 +1499,7 @@
         "icon-opacity": 0.75,
         "text-color": "hsl(0, 0%, 49%)",
         "text-halo-blur": 0,
-        "text-halo-color": "hsl(0,0%,0%)",
+        "text-halo-color": "#2b2b2b",
         "text-halo-width": 1.5,
         "text-opacity": 0.75
       }
@@ -1466,7 +1507,7 @@
     {
       "id": "City labels",
       "type": "symbol",
-      "source": "maptiler_planet",
+      "source": "gtelmaps",
       "source-layer": "place",
       "minzoom": 5,
       "maxzoom": 14,
@@ -1474,8 +1515,12 @@
       "layout": {
         "symbol-sort-key": ["to-number", ["get", "rank"]],
         "text-anchor": "center",
-        "text-field": "{name:en}",
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": "{name:vi}",
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-keep-upright": false,
         "text-max-width": 10,
         "text-offset": [0.2, 0.2],
@@ -1496,9 +1541,9 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "hsl(0, 0%, 49%)",
+        "text-color": "#888e95",
         "text-halo-blur": 0,
-        "text-halo-color": "hsl(0,0%,0%)",
+        "text-halo-color": "#2e2f33",
         "text-halo-width": 1.5
       }
     },
@@ -1517,8 +1562,12 @@
       ],
       "layout": {
         "symbol-sort-key": ["to-number", ["get", "rank"]],
-        "text-field": "{name:en}",
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": "{name:vi}",
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-size": [
           "interpolate",
           ["linear", 1],
@@ -1540,9 +1589,9 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "hsl(0, 0%, 49%)",
+        "text-color": "#8b9198",
         "text-halo-blur": 0,
-        "text-halo-color": "hsl(0,0%,0%)",
+        "text-halo-color": "#2e2f33",
         "text-halo-width": 1.5,
         "text-opacity": [
           "step",
@@ -1564,8 +1613,12 @@
       "maxzoom": 2,
       "filter": ["==", "class", "continent"],
       "layout": {
-        "text-field": "{name:en}",
-        "text-font": ["Metropolis Semi Bold", "Noto Sans Bold"],
+        "text-field": "{name:vi}",
+        "text-font": [
+          "Poppins Medium",
+          "Metropolis Semi Bold",
+          "Noto Sans Bold"
+        ],
         "text-justify": "center",
         "text-keep-upright": false,
         "text-letter-spacing": 0.1,
